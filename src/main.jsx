@@ -8,28 +8,26 @@ import {
 } from "react-router-dom";
 import MainLayout from './MainLayout/MainLayout.jsx';
 import { ScoketProvider } from './providers/Socket.jsx';
+import Room from './MainLayout/Pages/Room/Room.jsx';
+import { PeerProvider } from './providers/Peer.jsx';
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout></MainLayout>,
-    // children: [
-    //   {
-    //     path: "/room/:roomId",
-    //     element: <h1>Hii</h1>
-    //   }
-    // ]
   },
   {
     path: "/room/:roomId",
-    element: <h1>Hii</h1>
+    element: <Room />
   }
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <ScoketProvider>
-      <RouterProvider router={router} />
+      <PeerProvider>
+        <RouterProvider router={router} />
+      </PeerProvider>
     </ScoketProvider>
   </React.StrictMode>,
 )
